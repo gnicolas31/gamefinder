@@ -1,0 +1,107 @@
+TEST 1
+
+setup :
+order by note 
+test par genre / theme et pas par keyword
+
+ORDINATEUR
+    puzzle reveur / All over - Off - sangoku rance
+    puzzle rebelle / Art of murder hunt for the puppeteer - I wana be the guy - Spelunky
+    puzzle promoteur / the devil on g string - supraland - logicbots
+    puzzle perseverant / Off - Twisted Lands - Downfall
+    puzzle empathique /  Sengoku Rance - I wanna be the guy - The blackwell deception
+
+
+    pvp empathique / Stream Racer - IL-2 Sutmovik 1946 - Hot dogs, horseshoes & hand grenades
+    pvp rebelle / Deux ex GOTY edition - System shock - Superfighter deluxe
+
+    pve reveur / Broodstar - Homeworld - Occupy white walls
+    pve perseverant / the isle - the biding of isaac - Thief 2
+    pve rebelle / Superfighter deluxe - IL-2 - Spore : Glaactic adventures
+
+    strategy reveur / Sangoku rance - Homeworld - Original War
+    strategy empathique / Sangoku rance - IL-2  - Original War
+    strategy perseverant / The isle - gothic 2 noght of raven - gothic 2
+    strategy promoteur / my grandfather's farm - sid meiers civ - startopia
+
+    rpg based reveur / Deux ex GOTY - All Over - Off
+    rpg based perseverant / OFF - System Shock - The isle
+
+SWITCH
+    strategy reveur / Fire emplem - Mercenaries Saga - One piece pirate warriors
+    strat promoteur / cities skyline - LA Noire - Monopoly
+
+    pve reveur / Samurai ACes - Nintendo odyssey - Reigns
+    pve perseverant / NOTHING
+    pve Rebelle / Box boy - Sega - Mario + rabbids kingdom battle
+    pve prometeur / Super mario odyssey - air hockey - cities skylines
+
+Play 4 
+    pve reveur / Uncharted 3 - Uncharted collection - Shadow of the colossus
+    pve promoteur / Infamous - Gran Turismo
+
+    rpg based rebel / Bloodborne - God Of War-  The last of us
+    rpg based perseverant / Bloodborne - The last of us - Bloodborne
+    rpg based empathique / God of war - Uncharted 4 - uncharted 2 
+
+    strategy reveur / God of war - Fist of the north star - Gof of war
+    strategy perseverant / Marvel spiderman
+
+    pvp reveur / Uncharted - Uncharted - Uncharted
+    pvp promoteur / Grand turismo - Grand turismo - Grand turismo
+    pvp rebelle /  the last of us - uncharted - uncharted  
+
+    puzzle promoteur / NOTHING
+    puzzle reveur / Shadow of the colossus
+    puzzle rebelle / Shadow of the colossus - the last guardian - knowledge is power
+
+xbox 360
+    rpg based reveur / dragon age - lost odyssey - cry on
+
+xbox one
+    rpg based reveur / Liege dragon - Deponia collection - Van helsing
+    puzzle reveur / reactorX - Deponia collection
+    strategy reveur / Gwent : iron judgment - van helsing - Zamb!
+    strategy perseverant / super ultra dead rising 3 - cities skylines
+    strategy promoteur / cities skylines
+    pvp reveur / Genesis - killer instict - zamb!
+
+
+Probleme : 
+
+limiter date de sorties (minimum année 2002 psk plus vieille console du select est sortie en 2002 play 2)
+exclure les extensions qui ne sont pas stand alone
+certains résultats manquant ou solo
+grouper by collections (uncharted tous ensemble .. ? )
+
+
+TEST 2
+setup : 
+pc, after 2002, not an expansion, au moins une note au totale, limit 3 order by note totale
+
+
+    puzzle reveur / All over - Off - sangoku rance
+    puzzle rebelle / sengoku rance - spelunky Art of murder - hunt for the puppeteer
+    puzzle promoteur / the devil on g string - supraland - Dead hungry diner
+    puzzle perseverant / Off - Spelunky - Twisted Lands: Insomniac
+    puzzle empathique /  Sengoku Rance - Bookworm adventures  - The blackwell deception
+
+    strategy reveur / Sangoku rance - Sid Meiers Civ 3 - Homeworld
+    strategy empathique / Sangoku rance - Sid Meiers Civ 3  -IL-2 
+    strategy perseverant /  Sid Meiers Civ 3 - The isle - Medieval Total War
+    strategy promoteur / my grandfather's farm - sid meiers civ - Medieval Total War
+
+
+    rpg reveur / All Over - OFF - System shock
+
+    puzzle persevrant / Off - Spelunky - Twisted Lands : Insomniac
+    Puzzle promoteur / THe devil on g-string - supraland - dead hungry diner
+    pve reveur / broodstar - occupy white walls - sid meiers civ 3
+    rpg based -promoteur / My grandfather farm - sleep is death - noita
+    rpg rebelle / system shock - defense of the ancients - homeworld
+
+
+problemes
+    ils m'a sorti une extension (defense of the ancients)
+    il me sort des jeux d'avant 2002 ?
+    Limiter les dates aux maximum aujourd'hui, pas les jeux non sorties
