@@ -7,23 +7,20 @@
 // les variables globales (id du jeu, selecteur du bloc du jeu, couverture, titre..)
 var game = get_game_by_id(<?php echo $id_game; ?>);
 var selector = 'div[game_id=<?php echo $id_game; ?>]';
-//var cover = get_game_cover(<?php echo $id_cover; ?>);
-
 
 // a partir d'ici je push les données dans le dom en dessous
 
 // l'image de couverture si existante
- //$(selector+' .cover').attr('src', cover[0].url);
-
-
+$(selector+' .cover').attr('src', game[0].cover.url);
 // le titre du jeu
 $(selector+' .title').text(game[0].name);
+$(selector+' .game_link').attr('href', game[0].url);
 
 
 </script>
 
     <div class="game-item" game_id="<?php echo $id_game; ?>">
-        <a class="game_link" href="">
+        <a target="_blank" class="game_link" href="" class="game_link">
             <div class="game-thumb">
                 <img class="cover" src="assets/images/game/game-1.png" alt="game">
             </div>

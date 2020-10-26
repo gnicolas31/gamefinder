@@ -34,6 +34,7 @@
     <!-- contact-section-end -->
 
     <script>
+        connect_twitch();
         get_genre_list();
        // get_platform_list();
        //get_keywords_list();
@@ -41,6 +42,7 @@
        //count_game_by_filters();
        // j'isole la dernière date de sortie
        
+
 </script>
 
 <div id="categories_liste">
