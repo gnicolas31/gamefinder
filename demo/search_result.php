@@ -1,5 +1,6 @@
 <?php 
     $class_page = "search_result";
+    include 'connect.php';
     include 'header.php';
     $search_value = $_GET['s']; 
 ?>

@@ -107,19 +107,19 @@
                                     <div class="col-lg-12 form-group text-left">
                                         <label>Console de jeu<span>*</span></label>
                                         <select class="element select medium" id="platform" name="platform"> 
-                                            <option value="20" >Nintendo DS</option>
+                                       <!--     <option value="20" >Nintendo DS</option> -->
                                             <option value="130" >Nintendo Switch</option>
-                                            <option value="5" >Nintendo Wii</option>
-                                            <option value="41" >Nintendo Wii U</option>
+                                       <!--     <option value="5" >Nintendo Wii</option> -->
+                                       <!--     <option value="41" >Nintendo Wii U</option> -->
                                             <option value="6" >Ordinateur</option>
                                             <option value="48" >Playstation 4</option>
-                                            <option value="9" >Playstation 3</option>
-                                            <option value="8" >Playstation 2</option>
+                                        <!--    <option value="9" >Playstation 3</option> -->
+                                        <!--    <option value="8" >Playstation 2</option> -->
                                             <option value="49" >Xbox One</option>
-                                            <option value="12" >Xbox 360</option>
+                                       <!--     <option value="12" >Xbox 360</option> -->
                                         </select>
                                     </div>
-                                    <div class="col-lg-12 form-group text-left">
+                                    <!-- <div class="col-lg-12 form-group text-left">
                                         <label>Genres<span>*</span></label>
                                         <select class="element select medium" id="genres" name="genres"> 
                                             <option value="" selected="selected">Répondez à la question</option>
@@ -129,8 +129,49 @@
                                             <option value="<?php echo $joueur_regulier_pvp; ?>" >PVP</option>
                                             <option value="<?php echo $joueur_rpg; ?>" >RPG</option>
                                         </select>                                    
-                                    </div> 
+                                    </div>  -->
                                    
+                                    <div class="col-lg-12 form-group text-left">
+                                        <label>Nouveauté / Ouverture<span>*</span></label>
+                                        <select class="element select medium" id="qual1" name="qual1"> 
+                                            <option value="0" >0</option>
+                                            <option value="1" >1</option>
+                                            <option value="2" >2</option>
+                                            <option value="3" >3</option>
+                                            <option value="4" >4</option>
+                                        </select>                      
+                                    </div> 
+                                    <div class="col-lg-12 form-group text-left">
+                                        <label>Challenge / Conscienciosité<span>*</span></label>
+                                        <select class="element select medium" id="qual2" name="qual2"> 
+                                            <option value="0" >0</option>
+                                            <option value="1" >1</option>
+                                            <option value="2" >2</option>
+                                            <option value="3" >3</option>
+                                            <option value="4" >4</option>
+                                        </select>                      
+                                    </div> 
+                                    <div class="col-lg-12 form-group text-left">
+                                        <label>Stimulation sociale / Extraversion<span>*</span></label>
+                                        <select class="element select medium" id="qual3" name="qual3"> 
+                                            <option value="0" >0</option>
+                                            <option value="1" >1</option>
+                                            <option value="2" >2</option>
+                                            <option value="3" >3</option>
+                                            <option value="4" >4</option>
+                                        </select>                      
+                                    </div> 
+                                    <div class="col-lg-12 form-group text-left">
+                                        <label>Harmonie / Agréabiilité<span>*</span></label>
+                                        <select class="element select medium" id="qual4" name="qual4"> 
+                                            <option value="0" >0</option>
+                                            <option value="1" >1</option>
+                                            <option value="2" >2</option>
+                                            <option value="3" >3</option>
+                                            <option value="4" >4</option>
+                                        </select>                                    
+                                    </div> 
+
                                     <!-- <div class="col-lg-12 form-group text-left">
                                         <label>Netflix & chill ou activité compétitive ?<span>*</span></label>
                                         <select class="element select medium" id="que1" name="que1"> 
@@ -169,7 +210,7 @@
                                         </select>                                    
                                     </div>  -->
                                     <div class="col-lg-12 form-group text-left">
-                                        <label>Personnalité <span>*</span></label>
+                                        <label>Personnalité (filtre des themes) <span>*</span></label>
                                         <select class="element select medium" id="themes" name="themes"> 
                                             <option value="" selected="selected">Répondez à la question</option>
                                             <option value="<?php echo $personnalite_reveur; ?>" >Rêveur</option>
@@ -195,3 +236,5 @@
 <?php     
     include 'footer.php';
 ?>
+
+rebelle
