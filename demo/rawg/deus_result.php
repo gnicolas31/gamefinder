@@ -5,7 +5,7 @@
 ?>
 
  <!-- inner-banner-section start -->
- <section class="inner-banner-section inner-banner-section--style bg-overlay-black bg bg_img" data-background="assets/images/<?php echo $header_banner_img; ?>">
+ <section class="inner-banner-section inner-banner-section--style bg-overlay-black bg bg_img" data-background="assets/images/banner/<?php echo $header_banner_img; ?>">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
@@ -75,16 +75,15 @@
                                     $nbr_case_differentes = 0;
                                     $array_resultat_pertinence = array();
                                     $tableau_genres_final = '';
-                                    $sql_first = "SELECT id,id_igdb,nouveaute,challenge,stimulation,harmonie,name_genre FROM ponderation_genres WHERE id_igdb > 0";
+                                    $sql_first = "SELECT id,id_rawg,nouveaute,challenge,stimulation,harmonie,name_genre FROM ponderation_genres WHERE id_rawg !=0";
                                     $result_first = $conn->query($sql_first);
 
                                     $genre_tab;
                                     $string_tab;
 
+                                  //  var_dump($result_first);
 
                                     if ($result_first->num_rows > 0) {
-                                        // je fais un total de tous les coeff pour garder les genres qui ont un coeff inférieur à la moyenne
-                                        $total_coeff_de_diff = 0;
                                         // pour chaque genre enregistré en bdd
                                         foreach($result_first as $genre) {
                                             $indicateur_de_difference = 0;
@@ -137,22 +136,18 @@
                                                 $nbr_case_differentes++;            
                                             }    
 
-                                            
                                             // je set le coeff a 0 si le nbre de casse diff est a 0, sinon le coeff sera NaN
                                             if($nbr_case_differentes == 0) {
                                                 $coeff_difference = 0;
                                             } else {
                                                 $coeff_difference = $indicateur_de_difference/$nbr_case_differentes;
-                                                $total_coeff_de_diff += $coeff_difference;
                                             }
                                             /// je fais un tableau de tous les genres avec 3 valeurs : le coeff de diff, le nbr de cases diff et l'id du genre
-                                            $genre_tab[] = [$coeff_difference, $nbr_case_differentes, $genre['id_igdb'], $genre['name_genre']];
+                                            $genre_tab[] = [$coeff_difference, $nbr_case_differentes, $genre['id_rawg'], $genre['name_genre']];
                                             // je reset le nbr de cases diff pour le genre suivant
                                             $nbr_case_differentes = 0;
                                         }
 
-                                        // je calcule mam oyenne coeff totale
-                                        $total_coeff_de_diff_moyenne = $total_coeff_de_diff / 16;
                                         // Obtient une liste de colonnes
                                         foreach ($genre_tab as $key => $row) {
                                             $indic_diff[$key]  = $row[0];
@@ -161,28 +156,6 @@
                                         $indic_diff  = array_column($genre_tab, 0);
                                         $nb_cases = array_column($genre_tab, 1);
                                         array_multisort($indic_diff, SORT_ASC, $nb_cases, SORT_ASC, $genre_tab);
-                                        $i = 0;
-
-                                     //   $total_coeff_de_diff_moyenne = $total_coeff_de_diff_moyenne+(($total_coeff_de_diff_moyenne / 100)*20);
-                                        foreach($genre_tab as $genre_trie) { 
-                                          
-                                            ///// $genre_trie[0] = coeff de diff
-                                            //echo $genre_trie[0];
-                                            //// $genre_trie[1] = nbr cases diff
-                                            ///// $genre_trie[2] = id du genre
-                                            // j'ajoute 20% au coeff moyenne
-                                            if($total_coeff_de_diff_moyenne <= $genre_trie[0]) {
-                                                $string_tab[$i] = $genre_trie[2];
-                                         // 
-                                              echo $genre_trie[3]. ' - '.$genre_trie[0]. 'avec'.$genre_trie[1].'cases de diff /// exclu  <br />';
-                                            } else {
-                                         //
-                                                echo $genre_trie[3]. ' - '.$genre_trie[0]. 'avec'.$genre_trie[1].'cases de diff<br />';
-                                            }
-                                            ///// $genre_trie[3] = LE NOM DU GENRE
-                                        // echo $genre_trie[3];
-                                            $i++;
-                                        }        
                                     }
 
                                     $today_timestamp = time();
@@ -191,20 +164,12 @@
                                 <script>
                                     connect_twitch();
                                 </script>
-                                 <section class="col-lg-12">
-                                    <p class="text-left deus_info"> Les jeux affichés ci dessous sont ceux qui correspondent le plus à votre personnalité, du moins, selon l'algo , cliquez pour plus d'infos !</p> <br />
-                                    <h3 class="text-left"> Sortis cette année</h3> <hr />
-                                    <row class="row col-lg-12" id="thisyear">
-                                        <script>
-                                            do_the_deus_magic("<?php echo implode(',',$string_tab); ?>", <?php echo json_encode($array_themes); ?>, <?php echo $id_platform; ?>, <?php echo $today_timestamp; ?>, 1577836800 ,'thisyear', 6,1);
-                                        </script>
-                                    </row>
-                                </section>
                                 <section class="col-lg-12">
-                                    <h3 class="text-left"> Sortis ces 5 dernières années (hors 2020)</h3> <hr />
+                                    <p class="text-left deus_info"> Les jeux affichés ci dessous sont ceux qui correspondent le plus à votre personnalité, du moins, selon l'algo , cliquez pour plus d'infos !</p> <br />
+                                    <h3 class="text-left"> Sortis ces 5 dernières années</h3> <hr />
                                     <row class="row col-lg-12" id="lastfiveyears">
                                         <script>
-                                            do_the_deus_magic("<?php echo implode(',',$string_tab); ?>", <?php echo json_encode($array_themes); ?>, <?php echo $id_platform; ?>, 1577836800, 1451606400 ,'lastfiveyears', 6,0);
+                                            do_the_deus_magic("<?php echo $genre_tab[0][2]; ?>", <?php echo json_encode($array_themes); ?>, <?php echo $id_platform; ?>, <?php echo $today_timestamp; ?>, 1451606400 ,'lastfiveyears', 12,1);
                                         </script>
                                     </row>
                                 </section>
@@ -212,7 +177,7 @@
                                     <h3 class="text-left"> Sortis il y a 5 à 10 ans </h3> <hr />
                                     <row class="row col-lg-12" id="fivetotenyears">
                                         <script>
-                                            do_the_deus_magic("<?php echo implode(',',$string_tab); ?>", <?php echo json_encode($array_themes); ?>, <?php echo $id_platform; ?>,1451606400, 1262304000 ,'fivetotenyears',6,0);
+                                            do_the_deus_magic("<?php echo $genre_tab[0][2]; ?>", <?php echo json_encode($array_themes); ?>, <?php echo $id_platform; ?>,1451606400, 1262304000 ,'fivetotenyears',6,0);
                                         </script>
                                     </row>
                                 </section>

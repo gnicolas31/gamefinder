@@ -3,7 +3,7 @@
     include 'header.php';
 ?>
     <!-- inner-banner-section start -->
-    <section class="inner-banner-section inner-banner-section--style bg-overlay-black bg bg_img" data-background="assets/images/banner/inner.png">
+    <section class="inner-banner-section inner-banner-section--style bg-overlay-black bg bg_img" data-background="assets/images/<?php echo $header_banner_img; ?>">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
@@ -37,29 +37,41 @@
                             <p>Nous répondons rapidement et serons ravis de traiter vos demandes, ce formulaire est la pour vous !</p>
                         </div>
                         <div class="contact-form-area">
-                            <form class="contact-form">
-                                <div class="row">
-                                    <div class="col-lg-12 form-group text-left">
-                                        <label>Nom de contact<span>*</span></label>
-                                        <input type="text" name="name" placeholder="Ex : Delprat Vincent, ..">
+                            <?php 
+                            if($_GET) {
+                                $sujet = $_GET['subject'];
+                                $name = $_GET['name'];
+                                $email = $_GET['email'];
+                                $message = 'De :'.$name.' - '.$email.':'.$_GET['message'];
+                                mail( 'contact@deussearch.fr' , $sujet , $message );
+                                echo '<div class="deus_info success"> Le mail a bien été envoyé.</div>';
+                            } else {
+                            ?>
+                                <form class="contact-form" action="contact.php" method="get">
+                                    <div class="row">
+                                        <div class="col-lg-12 form-group text-left">
+                                            <label>Nom de contact<span>*</span></label>
+                                            <input type="text" name="name" required placeholder="Ex : Delprat Vincent, ..">
+                                        </div>
+                                        <div class="col-lg-12 form-group text-left">
+                                            <label>E-mail<span>*</span></label>
+                                            <input type="email" name="email" required placeholder="E-mail de contact">
+                                        </div>
+                                        <div class="col-lg-12 form-group text-left">
+                                            <label>Sujet <span>*</span></label>
+                                            <input type="text" name="subject" required placeholder="Sujet du message">
+                                        </div>
+                                        <div class="col-lg-12 form-group text-left">
+                                            <label>Message<span>*</span></label>
+                                            <textarea required placeholder="Message du mail"></textarea>
+                                        </div>
+                                        <div class="col-lg-12 form-group text-center">
+                                            <input type="submit" class="cmn-btn" value="Envoyer">
+                                        </div>
                                     </div>
-                                    <div class="col-lg-12 form-group text-left">
-                                        <label>E-mail<span>*</span></label>
-                                        <input type="email" name="email" placeholder="E-mail de contact">
-                                    </div>
-                                    <div class="col-lg-12 form-group text-left">
-                                        <label>Sujet <span>*</span></label>
-                                        <input type="text" name="subject" placeholder="Sujet du message">
-                                    </div>
-                                    <div class="col-lg-12 form-group text-left">
-                                        <label>Message<span>*</span></label>
-                                        <textarea placeholder="Message du mail"></textarea>
-                                    </div>
-                                    <div class="col-lg-12 form-group text-center">
-                                        <input type="submit" class="cmn-btn" value="Envoyer">
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            <?php }
+                            ?>
                         </div>
                     </div>
                 </div>

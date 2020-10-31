@@ -71,7 +71,7 @@
                     </div>
                     <div class="copyright-area d-flex flex-wrap justify-content-between">
                         <div class="copyright-content">
-                            <p>Copyright © <?php echo date(Y); ?>.All Rights Reserved By <a href="#">DeusSearch</a></p>
+                            <p>V0.0.3 - Copyright © <?php echo date(Y); ?>.All Rights Reserved By <a href="#">DeusSearch</a></p>
                         </div>
                     </div>
                 </div>
@@ -120,6 +120,9 @@
     /////
     $( document ).ready(function() {
         $('.main-menu li[active_meta="<?php echo $class_page; ?>"]').addClass('active');
+        $('video').each(function( index ) {
+            $(this).get(0).play();
+        });        
     });
 </script>
 </body>

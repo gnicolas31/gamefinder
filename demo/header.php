@@ -29,9 +29,20 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- responsive css link -->
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>  
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="deussearch.js"></script>
+    <meta property="og:image" content="https://deussearch.fr/assets/images/banner/banner.png" />
+    <meta name="theme-color" content="#171744" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGNBVJEK2R"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-XGNBVJEK2R');
+    </script>
 </head>
 <body class="<?php echo $class_page; ?>">
     <?php 
@@ -39,6 +50,7 @@
         if($_GET['s']) {
             $search_word = $_GET['s'];
         }
+        $header_banner_img = "header_dofus.png";
     ?>
 
     <div class="preloader">
@@ -60,7 +72,7 @@
                 <div class="container">
                     <div class="header-top-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="header-logo">
-                            <a class="site-logo site-title" href="index.html"><img src="assets/images/banner/logo.png" alt="site-logo"></a>
+                            <a class="site-logo site-title" href="index.php"><img src="assets/images/banner/logo.png" alt="site-logo"></a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +80,7 @@
             <div class="header-bottom">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg p-0">
-                        <a class="site-logo site-title d-lg-none" href="index.html"><img src="assets/images/banner/logo.png" alt="site-logo"></a>
+                        <a class="site-logo site-title d-lg-none" href="index.php"><img src="assets/images/banner/logo.png" alt="site-logo"></a>
                         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="fas fa-bars"></span>
                         </button>
@@ -76,23 +88,24 @@
                             <ul class="navbar-nav main-menu">
                                 <li active_meta="home"><a href="index.php">Accueil</a></li>
                                 <li class="deus_class" active_meta="deus"><a href="deus.php">Deus Search</a></li>
-                                <li class="menu_has_children"><a href="#0">Les jeux</a>  
+                                <!-- <li class="menu_has_children"><a href="#0">Les jeux</a>  
                                     <ul class="sub-menu">
-                                        <li><a href="categories.php">Par catégories</a></li>
-                                        <li><a href="blog.html">Par consoles</a></li>
-                                        <li active_meta="deus"><a href="blog.html">Deus Search </a></li>
+                                        <li><a href="#">Par catégories</a></li>
+                                        <li><a href="#">Par consoles</a></li>
+                                        <li active_meta="deus"><a href="#">Deus Search </a></li>
                                     </ul>
-                                <li class="menu_has_children"><a href="#0">Blog</a>
+                                <li class="menu_has_children"><a href="#">Blog</a>
                                     <ul class="sub-menu">
-                                        <li><a href="blog.html">Articles</a></li>
+                                        <li><a href="#">Articles</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#0">A propos</a></li>
+                                <li><a href="#0">A propos</a></li> -->
                                 <li active_meta="contact"><a href="contact.php">Contact</a></li>
                             </ul>                 
                         </div>
                         <div class="header-search-bar">
-                            <form method="get" action="search_result.php">
+                        <!--    <form method="get" action="search_result.php">-->
+                            <form method="get" action="#">
                                 <input type="text" name="s" placeholder="<?php echo $search_word; ?>">
                                 <button class="header-search-btn"><i class="fas fa-search"></i></button>
                             </form>
