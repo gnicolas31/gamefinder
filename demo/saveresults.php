@@ -14,7 +14,9 @@ foreach($results as $result) {
     $jeu5 = str_replace("'"," ", $result_to_save[4]);
     $jeu6 = str_replace("'"," ", $result_to_save[5]);
 
-    $sql_first = "INSERT INTO sauvegarde_resultats (jeu1,jeu2,jeu3,jeu4,jeu5,jeu6) VALUES ('".$jeu1."','".$jeu2."','".$jeu3."','".$jeu4."','".$jeu5."','".$jeu6."')";
+    $date_now = date('m/d/Y H:i:s', time());
+    var_dump($date_now);
+    $sql_first = "INSERT INTO sauvegarde_resultats (jeu1,jeu2,jeu3,jeu4,jeu5,jeu6,created) VALUES ('".$jeu1."','".$jeu2."','".$jeu3."','".$jeu4."','".$jeu5."','".$jeu6."','".$date_now."')";
 
     $result_first = $conn->query($sql_first);
 

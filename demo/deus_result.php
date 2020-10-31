@@ -165,7 +165,6 @@
 
                                      //   $total_coeff_de_diff_moyenne = $total_coeff_de_diff_moyenne+(($total_coeff_de_diff_moyenne / 100)*20);
                                         foreach($genre_tab as $genre_trie) { 
-                                          
                                             ///// $genre_trie[0] = coeff de diff
                                             //echo $genre_trie[0];
                                             //// $genre_trie[1] = nbr cases diff
@@ -173,11 +172,9 @@
                                             // j'ajoute 20% au coeff moyenne
                                             if($total_coeff_de_diff_moyenne <= $genre_trie[0]) {
                                                 $string_tab[$i] = $genre_trie[2];
-                                         // 
-                                              echo $genre_trie[3]. ' - '.$genre_trie[0]. 'avec'.$genre_trie[1].'cases de diff /// exclu  <br />';
+                                         //    echo $genre_trie[3]. ' - '.$genre_trie[0]. 'avec'.$genre_trie[1].'cases de diff /// exclu  <br />';
                                             } else {
-                                         //
-                                                echo $genre_trie[3]. ' - '.$genre_trie[0]. 'avec'.$genre_trie[1].'cases de diff<br />';
+                                         //    echo $genre_trie[3]. ' - '.$genre_trie[0]. 'avec'.$genre_trie[1].'cases de diff<br />';
                                             }
                                             ///// $genre_trie[3] = LE NOM DU GENRE
                                         // echo $genre_trie[3];
