@@ -4322,3 +4322,18 @@ rgba(255, 255, 255, 0.15);
   border-left: 5px solid#8ca436;
   color:white;
 }
+
+.deus_info.error {    
+  border-left: 5px solid#db364d;
+  margin: 2em 0;
+  background:rgba(217, 29, 29, 0.4);
+}
+
+
+.deus_info.error p {
+  font-size: 0.9em;
+}
+
+.deus_info.error.deus_issue {
+  display: none;
+}

@@ -71,7 +71,7 @@
                     </div>
                     <div class="copyright-area d-flex flex-wrap justify-content-between">
                         <div class="copyright-content">
-                            <p>V0.0.3 - Copyright © <?php echo date(Y); ?>.All Rights Reserved By <a href="#">DeusSearch</a></p>
+                            <p>V0.1.1 - Copyright © <?php echo date(Y); ?>.All Rights Reserved By <a href="#">DeusSearch</a></p>
                         </div>
                     </div>
                 </div>
