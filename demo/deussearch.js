@@ -279,9 +279,8 @@ function get_game_cover(id_cover) {
 ////////
 // the fucking magic
 /////
-function do_the_deus_magic(array_genres, array_themes, platform,today_timestamp, oldest_timestamp, dom_elem, limit_tab, saveornot) {
+function do_the_deus_magic(array_genres, array_themes, platform,today_timestamp, oldest_timestamp, dom_elem, limit_tab, saveornot, keywords) {
     // get the steam url
-    
     function get_steam_url(websites) {
         for (var i_steam = 0; i_steam < websites.length; i_steam++) {
             if(websites[i_steam].category == 13 ) {
@@ -291,14 +290,35 @@ function do_the_deus_magic(array_genres, array_themes, platform,today_timestamp,
         }
     }
 
-    function sortFunction(a, b) {
-        if (a.rawg_rating === b.rawg_rating) {
-            return 0;
+    // compter le nombre de mots clés similaires entra la recherche et  le jeu
+    function count_similarities(arrayA, arrayB) {
+        var matches = 0;
+        for (i=0;i<arrayA.length;i++) {
+            if (arrayB.indexOf(arrayA[i]) != -1)
+                matches++;
         }
-        if(a.rawg_rating < b.rawg_rating) {
+        return matches;
+    }
+
+
+    // tri final de mon tableau
+    function sortFunction(a, b) {
+        $('#deus_loader span').text('Tri par mots clés');
+        if (a.deus_keywords_similarities === b.deus_keywords_similarities) {
+            if (a.note_deussearch === b.note_deussearch) {
+                return 0;
+            }
+            if(a.note_deussearch < b.note_deussearch) {
+                return 1;
+            }
+            if(a.note_deussearch > b.note_deussearch) {
+                return -1;
+            }
+        }
+        if(a.deus_keywords_similarities < b.deus_keywords_similarities) {
             return 1;
         }
-        if(a.rawg_rating > b.rawg_rating) {
+        if(a.deus_keywords_similarities > b.deus_keywords_similarities) {
             return -1;
         }
     }
@@ -313,149 +333,63 @@ function do_the_deus_magic(array_genres, array_themes, platform,today_timestamp,
         // my grandfather's farm
         // domina
         // 4 last things
+        // battle brother
     // et sans le mot edition dans le nom
     // et pas hentai dans le nom
-    var param_added = '& themes != (42) & id != 132234 & id != 140204 & id != 21427 & id !=52006 & id != 113905 & id != 98753 & id != 31173 & id != 27308 & name !~ *"edition"* & name !~ *"hentai"* & name !~ *"hentaï"*';
+    var param_added = '& themes != (42) & id != 132234 & id != 140204 & id != 21427 & id !=52006 & id != 113905 & id != 98753 & id != 31173 & id != 27308 & id != 14394 & name !~ *"hentai"* & name !~ *"hentaï"*';
     var sort_by = 'total_rating';
-    //  for pc 
-    if (platform == 6) {
-        // note min 
-        param_added += '& total_rating > 5 ';
-        sort_by = 'total_rating_count'
-    }
+    if(platform == 6) {
+        param_added += " & total_rating > 1";    
+        sort_by = 'total_rating_count';
 
-    var deus_returned = "";
+    }
+    $('#deus_loader span').text('Filtrage par genres');
     $.ajax({
         method: "POST",
-        url: cors_url+"/games",
-        headers: {
-            'Accept': 'application/json',
-            'Client-ID': 'xdipluje1230tt0fh0nzs49w1slae3',
-            'Authorization': 'Bearer '+acces_twitch_app.access_token,
-        },
+        url: "deus_get_games.php",
         //  ou platform, themes et genres correspondent, ou date est entre le filtre, un min rating adapté (sur pc trop de jeux) a la console, limit 3 et tri adapté (au nombre de vote sur pc, a la note sur les consoles) 
-        // et est main game
-        data: "fields name, total_rating, url, id, slug, genres.name, videos.video_id, cover.image_id, websites.url, websites.category ; where platforms = "+platform+" & themes = ("+array_themes+") & genres != ("+array_genres+") & category = 0 & first_release_date <"+today_timestamp+" & first_release_date > "+oldest_timestamp+" "+param_added+"; limit 200; sort "+sort_by+" desc;",
+
+        data: { 'sort_by': sort_by, 'genres' : array_genres, 'keywords' : keywords, 'platform' : platform, 'recent_date' : today_timestamp, 'oldest_date' : oldest_timestamp },
+
+      //  data: "fields name, total_rating, url, id, slug, genres.name, videos.video_id, cover.image_id, websites.url, websites.category ; where platforms = "+platform+"  & genres = ("+array_genres+") & category = 0 & first_release_date <"+today_timestamp+" & first_release_date > "+oldest_timestamp+" "+param_added+"; limit 500; sort "+sort_by+" desc;",
         success:function( deus_results ) {
-
-            // je recupere, pour tous les jeux, les nots sur rawg, pour avoir un VRAI Classement par note
-            for (var i = 0; i < deus_results.length; i++) {
-
-                // la note de chaque jeu est initialisée à 0
-                deus_results[i].rawg_rating = 0;
-                deus_results[i].rawg_clip_url = '';
-                // je recupere la note que j'ai pour ce jeu depuis la bdd d'e rawg SI je l'ai deja sinon ca reste a 0
-                $.ajax({
-                    method: "POST",
-                    url: "getrawgrate.php",
-                    data: { 'id_igdb' : deus_results[i].id },
-                    success:function(rawg_inbdd_result) {
-                        rawg_inbdd_result = JSON.parse(rawg_inbdd_result);
-                        var note_from_rawg_in_my_bdd = rawg_inbdd_result.rating_rawg;
-                        // si je l'ai en bdd la note du jeu prend cette note
-                        if(note_from_rawg_in_my_bdd != 'inconnu') {
-                            deus_results[i].rawg_rating = note_from_rawg_in_my_bdd;
-                            deus_results[i].rawg_clip_url = rawg_inbdd_result.clip_url;
-                        }
-                        // sinon je vais la recuperer sur le site de rawg 
-                        else {
-                            // La je replace le nom de mon jeu pour essayer de coller avec un eventuel lien chez rawg et j'enregistre en bdd
-
-                            var name_rawg = deus_results[i].slug.replace("digital deluxe", '');
-                            var name_rawg = name_rawg.replace("for nintendo switch", '');
-                            $.ajax({
-                                method: "GET",
-                                url: "https://api.rawg.io/api/games/"+name_rawg.toLowerCase()+"?key=1a07bf406da8478d952155742cde59ce",
-                                success:function( rawg_result ) {
-                                    deus_results[i].rawg_id = rawg_result.id;
-                                    deus_results[i].rawg_rating = rawg_result.rating;
-                                    if(rawg_result.clip) {
-                                        deus_results[i].rawg_clip_url = rawg_result.clip.clip;
-                                    }
-                                    $.ajax({
-                                        method: "POST",
-                                        url: "savelink.php",
-                                        data: { 'id_igdb' : deus_results[i].id, 'id_rawg' : deus_results[i].rawg_id, 'rawg_rating': deus_results[i].rawg_rating, 'clip_url' :  deus_results[i].rawg_clip_url},
-                                        success:function(deus_save) {
-                                        //    console.log(deus_save);
-                                        },          
-                                        async: false // <- this turns it into synchronous
-                                    });
-                                },
-                                async: false // <- this turns it into synchronous
-                            });
-                        }
-                    },          
-                    async: false // <- this turns it into synchronous
-                });
-            }
-            deus_results.sort(sortFunction);
-        //    deus_sort_by_rawg_rating(deus_results);
-
-            /// IF I WANT TO SAVE THE RESULTS I CAN WITH THE SAVEORNOT VARIABLE
-            if(saveornot == 1) {
-                $.ajax({
-                    method: "POST",
-                    url: "saveresults.php",
-                    data: { 'results' : deus_results },
-                    success:function(deus_save) {
-                    //    console.log(deus_save);
-                    },          
-                    async: false // <- this turns it into synchronous
-                });
-            }
-           
-            deus_returned = deus_results;
+            deus_results = JSON.parse(deus_results);
             if(deus_results.length > 0) {
+                var i_displayed=0;
                 for (var i = 0; i < deus_results.length; i++) {
-                    if(i < limit_tab && deus_results[i].rawg_rating >= 0) {
-                        var steam_bloc = '';
-                        if(deus_results[i].websites && platform == 6) {
-                            steam_bloc = '<a target="_blank" class="deus_see_more steam" href="'+get_steam_url(deus_results[i].websites)+'"><img src="assets/images/steam_logo.png" alt="Lien steam" title="Lien Steam"></a>';
-                        }
-                        game_url = deus_results[i].url;
-                        if(steam_bloc!= '') {
-                            game_url = get_steam_url(deus_results[i].websites);
-                        }
-                        var rating = deus_results[i].total_rating;
+                    if(i_displayed < limit_tab) {
+                        var rating = deus_results[i].rating;
                         var deus_result_game_id = deus_results[i].id;
                         var genre = '';
                         if(deus_results[i].genres) {
                             genre = deus_results[i].genres[0].name;
                         }
-                        var cover = '';
-                        if(deus_results[i].cover) {
-                            cover = deus_results[i].cover.image_id;
-                        }
+                        var cover = deus_results[i].img_url;
                         var video_bloc = '';
                         // si rawg alors je prends
-                        if(deus_results[i].rawg_clip_url) {
-                            video_bloc = '<video class="deus_video" id="video_player" loop muted width="250"><source src="'+deus_results[i].rawg_clip_url+'" type="video/mp4"> Sorry, your browser doesn\'t support embedded videos.</video>';
-                        }
-                        // sinon si igdb video je prends
-                        else if(deus_results[i].videos) {
-                            var youtube_url = 'https://www.youtube.com/embed/'+deus_results[i].videos[0].video_id;
-                            video_bloc = '<iframe class="deus_video yt" width="420"  allow="autoplay" height="315" src="'+youtube_url+'"></iframe>';
+                        if(deus_results[i].clip_url) {
+                            video_bloc = '<video class="deus_video" id="video_player" loop muted width="250"><source src="'+deus_results[i].clip_url+'" type="video/mp4"> Sorry, your browser doesn\'t support embedded videos.</video>';
                         }
                         // sinon rien
-
+                        var bg_url = 'background-image:url("'+cover+'");';
                         $("#"+dom_elem).append('<div class="col-lg-4 col-md-6 col-sm-12 mb-30"> \
-                        <div class="game-item deus_result" style=background-image:url('+'"https://images.igdb.com/igdb/image/upload/t_cover_big/'+cover+'.jpg"'+');" game_id="'+deus_results[i].id+'" id="game"> \
-                            <a class="game_url" target="_blank" href="'+game_url+'">\
+                        <div class="game-item deus_result" style='+bg_url+' game_id="'+deus_results[i].id+'" id="game"> \
+                            <a class="game_url" target="_blank" href="https://rawg.io/games/'+deus_results[i].slug+'">\
                                 <div class="game_deus_bg"></div>\
-                                <a href="'+deus_results[i].url+'" target="_blank" class="game_link"> \
+                                <a href="https://rawg.io/games/'+deus_results[i].slug+'" target="_blank" class="game_link"> \
                                     <div class="game-content"> \
                                         <div class="game-content-body"> \
-                                            <h3 class="title">'+deus_results[i].name+'</h3><p>'+genre+'</p>\
+                                            <h3 class="title">'+deus_results[i].game_name+'</h3>\
+                                            <p class="deus_same_val" ><span>'+deus_results[i].num_genres+'</span> genre(s) recommandés </p>\
                                             '+video_bloc+'\
                                         </div> \
                                     </div> \
                                     <i class="fas fa-long-arrow-alt-right deus_see_more" title="Plus d\'informations sur le jeu"></i>\
-                                    '+steam_bloc+'\
                                 </a> \
                             </a>\
                             </div>\
                         </div>');
+                        i_displayed++;
                     }
                 }
             } else {
@@ -464,6 +398,5 @@ function do_the_deus_magic(array_genres, array_themes, platform,today_timestamp,
         },          
         async: false // <- this turns it into synchronous
     });
-    return deus_returned;
+   // return deus_returned;
 }
-

@@ -78,20 +78,6 @@
     <!-- inner-banner-section start -->
    <section class="inner-banner-section inner-banner-section--style bg-overlay-black bg bg_img" data-background="assets/images/<?php echo $header_banner_img; ?>">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12 text-center">
-                    <div class="inner-banner-content">
-                        <h2 class="title">Recherche Deus Search</h2>
-                        <div class="breadcrumb-area">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">DEUS SEAAAARCH</a></li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!-- inner-banner-section end -->
@@ -99,40 +85,47 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
-                    <div class="contact-area">
-                        <p class="text-left deus_info"> Ce questionnaire de 12 questions permettra de définir votre personnalité et vous proposera une liste allant jusqu'a 18 jeux vous proposant une expérience de jeu adaptée.</p> <br />
+                    <div class="contact-area deus_bloc">
+                        <p class="text-left deus_info"  data-i18n="deus_form_notice_preform"> Ce questionnaire de 12 questions permettra de définir votre personnalité et vous proposera une liste allant jusqu'a 18 jeux vous proposant une expérience de jeu adaptée.</p> <br />
                         <?php $date_today_for_form = new DateTime(); ?>
                         <form  method="post" action="deus_result.php" id="deus_form" class="contact-form">                 
                                 <div class="deus_platform col-lg-12 form-group  text-center">
                                     <fieldset class="deus_form">
-                                        <legend>Console de jeu</legend>
+                                        <legend> Sur quoi veux tu jouer ?</legend>
                                         <select class="element select medium" id="platform" name="platform"> 
                                         <option value="" selected="selected">Cliquer pour dérouler</option>
                                     <!--     <option value="20" >Nintendo DS</option> -->
-                                            <option value="130" >Nintendo Switch </option> 
+                                         <!--   <option value="130" >Nintendo Switch </option> -->
                                     <!--     <option value="5" >Nintendo Wii</option> -->
                                     <!--     <option value="41" >Nintendo Wii U</option> -->
-                                           <option value="6" >Ordinateur</option>
-                                           <option value="48" >Playstation 4</option>
+                                           <option value="4" >Ordinateur</option>
+                                           <option value="18" >Playstation 4</option>
                                         <!--    <option value="9" >Playstation 3</option> -->
                                          <!--   <option value="8" >Playstation 2</option>-->
-                                           <option value="49" >Xbox One</option>
+                                           <option value="1" >Xbox One</option>
                                     <!--     <option value="12" >Xbox 360</option> -->
                                         </select>
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12 form-group text-left">
+
+                                    <!--
+                                        ///////
+                                        //  FILTRES DE GENRES (IGDB) PAR PONDERATION 
+                                        ///////
+                                    -->
+
                                     <fieldset class="deus_form">
-                                        <legend> Vous êtes quelqu'un d'introverti, de reservé</legend>
-                                        <label for="extraval1_1" class="deus_radio"><input type="radio" name="extraversion_val_1" value="1" id="extraval1_1"> Pas d'accord du tout</label>
+                                        <legend> Tu es quelqu'un d'introverti, de reservé</legend>
+                                        <label for="extraval1_1" class="deus_radio"><input type="radio" name="extraversion_val_1" value="1" id="extraval1_1" >Pas d'accord du tout</label>
                                         <label for="extraval1_2" class="deus_radio"><input type="radio" name="extraversion_val_1" value="2" id="extraval1_2"> Plutot pas d'accord</label>
                                         <label for="extraval1_3" class="deus_radio"><input type="radio" name="extraversion_val_1" value="3" id="extraval1_3"> Neutre</label>
-                                        <label for="extraval1_4 "class="deus_radio"><input type="radio" name="extraversion_val_1" value="4" id="extraval1_4"> Plutot d'accord</label>
+                                        <label for="extraval1_4 "class="deus_radio"><input type="radio" name="extraversion_val_1" value="4" id="extraval1_4">Plutot d'accord</label>
                                         <label for="extraval1_5 "class="deus_radio"><input type="radio" name="extraversion_val_1" value="5" id="extraval1_5">Totalement d'accord</label>
                                     </fieldset>
 
                                     <fieldset class="deus_form">
-                                        <legend>Vous êtes du genre à vous prélasser</legend>
+                                        <legend>Tu es du genre à te prélasser</legend>
                                         <label for="consval1_1" class="deus_radio"><input type="radio" name="conscencieux_val_1" value="1" id="consval1_1"> Pas d'accord du tout</label>
                                         <label for="consval1_2" class="deus_radio"><input type="radio" name="conscencieux_val_1" value="2" id="consval1_2"> Plutot pas d'accord</label>
                                         <label for="consval1_3" class="deus_radio"><input type="radio" name="conscencieux_val_1" value="3" id="consval1_3"> Neutre</label>
@@ -141,7 +134,7 @@
                                     </fieldset>
 
                                     <fieldset class="deus_form">
-                                        <legend>Vous portez beaucoup d'interêt au rapport à l'autre</legend>
+                                        <legend>Tu portes beaucoup d'interêt au rapport à l'autre</legend>
                                         <label for="extraval2_1" class="deus_radio"><input type="radio" name="extraversion_val_2" value="1" id="extraval2_1">Pas d'accord du tout</label>
                                         <label for="extraval2_2" class="deus_radio"><input type="radio" name="extraversion_val_2" value="2" id="extraval2_2">Plutot pas d'accord</label>
                                         <label for="extraval2_3" class="deus_radio"><input type="radio" name="extraversion_val_2" value="3" id="extraval2_3">Neutre</label>
@@ -150,7 +143,7 @@
                                     </fieldset>
 
                                     <fieldset class="deus_form">
-                                        <legend> L'art et la créativité vous importe peu</legend>
+                                        <legend> L'art et la créativité t'importe peu</legend>
                                         <label for="ouvval1_1" class="deus_radio"><input type="radio" name="ouverture_val_1" value="1" id="ouvval1_1">Pas du tout</label>
                                         <label for="ouvval1_2" class="deus_radio"><input type="radio" name="ouverture_val_1" value="2" id="ouvval1_2">Plutot pas d'accord</label>
                                         <label for="ouvval1_3" class="deus_radio"><input type="radio" name="ouverture_val_1" value="3" id="ouvval1_3">Neutre</label>
@@ -159,25 +152,24 @@
                                     </fieldset>
 
                                     <fieldset class="deus_form">
-                                        <legend>Vous portez facilement un jugement sur les autres</legend>
+                                        <legend>Tu portes facilement un jugement sur les autres</legend>
                                         <label for="agreabval2_1" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="1" id="agreabval2_1">Pas d'accord du tout</label>
                                         <label for="agreabval2_2" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="2" id="agreabval2_2">Plutot pas d'accord</label>
                                         <label for="agreabval2_3" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="3" id="agreabval2_3">Neutre</label>
                                         <label for="agreabval2_4" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="4" id="agreabval2_4">Plutot d'accord</label>
                                         <label for="agreabval2_5" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="5" id="agreabval2_5">Totalement d'accord</label>
-                                    </fieldset>
-
+                                    
                                     <fieldset class="deus_form">
-                                        <legend>Vous appréciez les tâches pénibles, éprouvantes, ..</legend>
+                                        <legend>Tu apprécies les tâches pénibles, éprouvantes, ..</legend>
                                         <label for="consval2_1" class="deus_radio"><input type="radio" name="conscencieux_val_2" value="1" id="consval2_1"> Pas d'accord du tout</label>
-                                        <label for="consval2_2" class="deus_radio"><input type="radio" name="conscencieux_val_2" value="2" id="consval2_2"> Plutot pas d'accord</label>
-                                        <label for="consval2_3" class="deus_radio"><input type="radio" name="conscencieux_val_2" value="3" id="consval2_3"> Neutre</label>
+                                        <label for="consval2_2" class="deus_radio"><input type="radio" name="conscencieux_val_2" value="2" id="consval2_2" >Plutot pas d'accord</label>
+                                        <label for="consval2_3" class="deus_radio"><input type="radio" name="conscencieux_val_2" value="3" id="consval2_3" >Neutre</label>
                                         <label for="consval2_4" class="deus_radio"><input type="radio" name="conscencieux_val_2" value="4" id="consval2_4"> Plutot d'accord</label>
                                         <label for="consval2_5" class="deus_radio"><input type="radio" name="conscencieux_val_2" value="5" id="consval2_5"> Totalement d'accord</label>
                                     </fieldset>
 
                                     <fieldset class="deus_form">
-                                        <legend>Vous débordez d'imagination</legend>
+                                        <legend>Tu débordes d'imagination</legend>
                                         <label for="ouvval2_1" class="deus_radio"><input type="radio" name="ouverture_val_2" value="1" id="ouvval2_1">Pas d'accord du tout</label>
                                         <label for="ouvval2_2" class="deus_radio"><input type="radio" name="ouverture_val_2" value="2" id="ouvval2_2">Plutot pas d'accord</label>
                                         <label for="ouvval2_3" class="deus_radio"><input type="radio" name="ouverture_val_2" value="3" id="ouvval2_3">Neutre</label>
@@ -186,13 +178,65 @@
                                     </fieldset>
 
                                     <fieldset class="deus_form" >
-                                        <legend>Vous croyez en la bonne foi des gens</legend>
-                                        <label for="agreabval2_1" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="1" id="agreabval2_1">Pas d'accord du tout</label>
-                                        <label for="agreabval2_2" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="2" id="agreabval2_2">Plutot pas d'accord</label>
-                                        <label for="agreabval2_3" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="3" id="agreabval2_3">Neutre</label>
-                                        <label for="agreabval2_4" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="4" id="agreabval2_4">Plutot d'accord</label>
-                                        <label for="agreabval2_5" class="deus_radio"><input type="radio" name="agreabilite_val_2" value="5" id="agreabval2_5">Totalement d'accord</label>
+                                        <legend>Tu crois en la bonne foi des gens</legend>
+                                        <label for="agreabval1_1" class="deus_radio"><input type="radio" name="agreabilite_val_1" value="1" id="agreabval1_1">Pas d'accord du tout</label>
+                                        <label for="agreabval1_2" class="deus_radio"><input type="radio" name="agreabilite_val_1" value="2" id="agreabval1_2">Plutot pas d'accord</label>
+                                        <label for="agreabval1_3" class="deus_radio"><input type="radio" name="agreabilite_val_1" value="3" id="agreabval1_3">Neutre</label>
+                                        <label for="agreabval1_4" class="deus_radio"><input type="radio" name="agreabilite_val_1" value="4" id="agreabval1_4">Plutot d'accord</label>
+                                        <label for="agreabval1_5" class="deus_radio"><input type="radio" name="agreabilite_val_1" value="5" id="agreabval1_5">Totalement d'accord</label>
                                     </fieldset>
+
+
+
+                                    <!--
+                                        ///////
+                                        //  FILTRES DE MOTS CLES (RAWG) 
+                                        ///////
+                                    -->
+
+                                    <fieldset class="deus_form" >
+                                        <legend>Vous avez un mode de jeu préféré ?</legend>
+                                        <label for="mode_1" class="deus_radio"><input type="radio" name="mode_id" value="31" id="mode_1">Joueur Solo</label>
+                                        <label for="mode_2" class="deus_radio"><input type="radio" name="mode_id" value="" id="mode_2">Les deux me vont</label>
+                                        <label for="mode_3" class="deus_radio"><input type="radio" name="mode_id" value="7" id="mode_3">Multijoueur</label>
+                                        <span> Vous affichera en premier les jeux principalement en solo ou en multijoueurs, mais ne sert pas de filtre </span>
+                                    </fieldset>
+
+                                  <!--         <fieldset class="deus_form" >
+                                        <legend>Graphique préférés</legend>
+                                        <label for="graphic_1" class="deus_radio"><input type="radio" name="graphic_id" value="45" id="graphic_1">2D</label>
+                                        <label for="graphic_2" class="deus_radio"><input type="radio" name="graphic_id" value="" id="graphic_2">Sans importance</label>
+                                        <label for="graphic_3" class="deus_radio"><input type="radio" name="graphic_id" value="571" id="graphic_3">3D</label>
+                                    </fieldset> 
+
+                                    <fieldset class="deus_form" >
+                                        <legend>Colorimetrie</legend>
+                                        <label for="colorimetrie_1" class="deus_radio"><input type="radio" name="colorimetrie_id" value="165" id="colorimetrie_1">Colorful</label>
+                                        <label for="colorimetrie_2" class="deus_radio"><input type="radio" name="colorimetrie_id" value="" id="colorimetrie_2">Sans importance</label>
+                                        <label for="colorimetrie_3" class="deus_radio"><input type="radio" name="colorimetrie_id" value="41" id="colorimetrie_3">Dark</label>
+                                    </fieldset>
+
+                                  <fieldset class="deus_form" >
+                                        <legend>Univers</legend>
+                                        <label for="univers_1" class="deus_radio"><input type="radio" name="univers_id" value="32" id="univers_1">Sci-fi</label>
+                                        <label for="univers_2" class="deus_radio"><input type="radio" name="univers_id" value="66" id="univers_2">Medieval</label>
+                                        <label for="univers_3" class="deus_radio"><input type="radio" name="univers_id" value="64" id="univers_3">Fantasy</label>
+                                    </fieldset>
+
+                                   <fieldset class="deus_form" >
+                                        <legend>Rythme</legend>
+                                        <label for="rythme_1" class="deus_radio"><input type="radio" name="rythme_id" value="131" id="rythme_1">Fast-Paced</label>
+                                        <label for="rythme_2" class="deus_radio"><input type="radio" name="rythme_id" value="138" id="rythme_2">Relaxing</label>
+                                    </fieldset>
+
+                                    <fieldset class="deus_form" >
+                                        <legend>Immersion graphique</legend>
+                                        <label for="imme_graph_1" class="deus_radio"><input type="radio" name="imme_graph_id" value="13" id="imme_graph_1">Atmospheric</label>
+                                        <label for="imme_graph_2" class="deus_radio"><input type="radio" name="imme_graph_id" value="112" id="imme_graph_2">Minimalist</label>
+                                    </fieldset> -->
+
+
+
                                     <script>
                                         $('.deus_radio').click(function() {
                                             $(this).siblings().removeClass('active');
@@ -200,48 +244,27 @@
                                         });
                                     </script>
                                 </div>
-                                <div class="deus_platform col-lg-12 form-group  text-center">
-                                    <fieldset class="deus_form">
-                                        <legend>Vos points-forts seraient..</legend>
-                                        <select class="element select medium" id="themes" name="themes"> 
-                                        <option value="" selected="selected">Cliquer pour dérouler</option>
-                                        <option value="<?php echo $personnalite_reveur; ?>" >L'imagination et la reflexion</option>
-                                        <option value="<?php echo $personnalite_rebelle; ?>" >La spontaneité et la lucidité</option>
-                                        <option value="<?php echo $personnalite_promoteur; ?>" >L'intuition et l'adaptabilité</option>
-                                        <option value="<?php echo $personnalite_perseverant_travaillomane; ?>" >L'engagement et l'observation</option>
-                                        <option value="<?php echo $personnalite_empathique; ?>" >La sensibilité et la bienveillance</option>
-                                    </select>  
-                                    </fieldset>
-                                </div>
                                
                                 <div class="col-lg-12 form-group text-center submit_field">
                                     <input type="submit" class="cmn-btn" value="Envoyer">
                                     <div class="deus_info error notice deus_issue">
                                     </div>
                                 </div>
-                                <span class="text-left deus_notice"> Cette "étude de la personnalité" se base sur le format du Big Five <br />et reprend le format 10 items, réduis à 8, suivant le modèle établi par Jason VandenBerghe. <br />
+                                <span class="text-left deus_notice" data-i18n="deus_form_notice_postform"> Cette "étude de la personnalité" se base sur le format du Big Five <br />et reprend le format 10 items, réduis à 8, suivant le modèle établi par Jason VandenBerghe. <br />
                                         Le seul truc fait maison, c'est l'organisation des genres, l'algo qui m'a pris 20 ans, et bien entendu le site. 
                                 </span>
                             </div>
                         </form>	   
-
-                            <script>
+                        <script>
                             $('#deus_form').submit(function(event) {
                                 $('.submit_field .notice').empty();
-                                $nb_conditions = 0;
                                 event.preventDefault(); //this will prevent the default submit
                                 
                                 if(!$('#platform').val()){
-                                    $nb_conditions++;
                                     $('.submit_field .notice').show();
-                                    $('.submit_field .notice').append('<p> Renseignez une plateforme.. </p>');
+                                    $('.submit_field .notice').append('<p> Renseignes une plateforme.. </p>');
                                 }
-                                if(!$('#themes').val()) {
-                                    $nb_conditions++;
-                                    $('.submit_field .notice').show();
-                                    $('.submit_field .notice').append('<p> Renseignez vos points forts.. </p>');
-                                }
-                                else if($('#platform').val() && $('#themes').val()) {
+                                else if($('#platform').val()) {
                                        $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
                                 }
                                 

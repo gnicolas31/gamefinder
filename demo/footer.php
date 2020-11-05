@@ -71,7 +71,7 @@
                     </div>
                     <div class="copyright-area d-flex flex-wrap justify-content-between">
                         <div class="copyright-content">
-                            <p>V0.1.1 - Copyright © <?php echo date(Y); ?>.All Rights Reserved By <a href="#">DeusSearch</a></p>
+                            <p>V0.2 - Copyright © <?php echo date(Y); ?>.<span data-i18n="copyright">All Rights Reserved By </span><a href="#">DeusSearch</a></p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,6 @@
 
 
 <!-- jquery -->
-<script src="assets/js/jquery-3.3.1.min.js"></script>
 <!-- migarate-jquery -->
 <script src="assets/js/jquery-migrate-3.0.0.js"></script>
 <!-- bootstrap js -->
@@ -122,7 +121,7 @@
         $('.main-menu li[active_meta="<?php echo $class_page; ?>"]').addClass('active');
         $('video').each(function( index ) {
             $(this).get(0).play();
-        });        
+        });      
     });
 </script>
 </body>

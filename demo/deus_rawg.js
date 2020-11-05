@@ -295,7 +295,6 @@ function do_the_deus_magic() {
         // et est main game
         success:function( deus_results ) {
             console.log(deus_result);
-          
         },          
         async: false // <- this turns it into synchronous
     });

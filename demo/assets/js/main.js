@@ -605,4 +605,112 @@ $('a, .zoom-cursor, .trigger-close, .trigger-plus').on('mouseleave', defaultCurs
 
 })(jQuery);
    
-        
+
+// translation
+//     function update_texts() { 
+//         $('body').i18n() 
+//     };
+
+//     $.i18n().load( {
+//             en: {
+//                 'homepage': 'Home'	,
+//                 'indextitle': 'Find your next game',
+//                 'indexsubtitle': 'In only 10 questions, our algotirhm find you a list of games adapted to your research.',
+//                 'deussearch_go': 'Do Deus Search',
+//                 'index_bloc_1_title': 'Unic games',
+//                 'index_bloc_1_p': 'Discover new licences out of the box',
+//                 'index_bloc_2_title': 'A unequal experience',
+//                 'index_bloc_2_p': 'Find the best game for you between 133 000 games',
+//                 'index_bloc_3_title': 'For Gamers',
+//                 'index_bloc_3_p': 'A powerfull tool',
+//                 'index_bloc_4_title': 'By gamers',
+//                 'index_bloc_4_p': 'We searched games for so long too..',
+//                 'index_side_subtitle':'A new way to search',
+//                 'index_side_title':'Discover games adapted for your personnality',
+//                 'index_side_content':'',
+//                 'copyright':'All rights reserved by ',
+//                 'contact_title':'Contact Us',
+//                 'contact_sub_title':'Need help ?',
+//                 'contact_title_how_to':'How-To',
+//                 'contact_explain':'We answer quickly to any request.',
+//                 'contact_name_field':'Contact name',
+//                 'contact_email_field':'E-mail',
+//                 'contact_subject_field':'Subject',
+//                 'contact_message_field':'Message',
+//                 'contact_send_button':'Send',
+//                 'deus_form_agree': 'Totally Agree',
+//                 'deus_form_agree_2':'Agree',
+//                 'deus_form_neutral':'Neutral',
+//                 'deus_form_disagree_2':'Disagree',
+//                 'deus_form_disagree':'Totally disagree',
+//                 'deus_form_notice_preform':'',                
+//                 'deus_form_notice_postform':' ',
+//                 'deus_form_que1':'',
+//                 'deus_form_que2':'',
+//                 'deus_form_que3':'',
+//                 'deus_form_que4':'',
+//                 'deus_form_que5':'',
+//                 'deus_form_que6':'',
+//                 'deus_form_que7':'',
+//                 'deus_form_que8':'',
+
+//             },
+//             fr: {
+//                 'homepage': 'accueil'	,
+//                 'indextitle': 'Trouves le jeu qui te correspond',
+//                 'indexsubtitle': 'En seulement 10 questions, notre algorithme vous propose une liste de jeux adaptée à vos envies parmis les 130 000 disponibles.',
+//                 'deussearch_go': 'Recherche Deus Search',
+//                 'index_bloc_1_title': 'Des jeux uniques',
+//                 'index_bloc_1_p': 'Découvrez de nouvelles licences qui sortent du lot. ',
+//                 'index_bloc_2_title': 'Une expérience sans égal',
+//                 'index_bloc_2_p': 'Faîtes vous plaisir sur le jeu qui vous correspond parmis les 130 000 disponibles. ',
+//                 'index_bloc_3_title': 'Pour les gamers',
+//                 'index_bloc_3_p': 'Un outil poussé fournissant une nouvelle approche de la consommation vidéoludique. ',
+//                 'index_bloc_4_title': 'Par des gamers',
+//                 'index_bloc_4_p': 'Parceque nous aussi nous avons passé trop de temps à chercher un bon jeu. ',
+//                 'index_side_subtitle':'Une recherche unique',
+//                 'index_side_title':'Découvrez des jeux adaptés à votre personnalité',
+//                 'index_side_content':'',
+//                 'copyright':'Tous droits reservés ',
+//                 'contact_title':'Nous contacter',
+//                 'contact_sub_title':'Besoin d\'aide ?',
+//                 'contact_title_how_to':'Contactez-nous',
+//                 'contact_explain':'Nous répondons rapidement et serons ravis de traiter vos demandes, ce formulaire est la pour toi !',
+//                 'contact_name_field':'Nom de contact',
+//                 'contact_email_field':'E-mail',
+//                 'contact_subject_field':'Sujet',
+//                 'contact_message_field':'Message',
+//                 'contact_send_button':'Envoyer',
+//                 'deus_form_agree': 'Totalement d\'accord',
+//                 'deus_form_agree_2':'Plutot d\'accord',
+//                 'deus_form_neutral':'Neutre',
+//                 'deus_form_disagree_2':'Plutot pas d\'accord',
+//                 'deus_form_disagree':'Totalement d\'accord',
+//                 'deus_form_notice_preform':' Ce questionnaire de 12 questions permettra de définir votre personnalité et vous proposera une liste allant jusqu\'a 18 jeux vous proposant une expérience de jeu adaptée.',
+//                 'deus_form_notice_postform':' Cette "étude de la personnalité" se base sur le format du Big Five <br />et reprend le format 10 items, réduis à 8, suivant le modèle établi par Jason VandenBerghe.',
+//                 'deus_form_que1':'Tu es quelqu\'un d\'introverti, de reservé',
+//                 'deus_form_que2':'Tu es du genre à te prélasser',
+//                 'deus_form_que3':'Tu portes beaucoup d\'interêt au rapport à l\'autre',
+//                 'deus_form_que4':'L\'art et la créativité t\'importe peu',
+//                 'deus_form_que5':'Tu portes facilement un jugement sur les autres',
+//                 'deus_form_que6':'Tu apprécies les tâches pénibles, éprouvantes, ..',
+//                 'deus_form_que7':'Tu débordes d\'imagination',
+//                 'deus_form_que8':'Tu crois en la bonne foi des gens',
+//            }
+//         } 
+//     );
+
+//     if($(this).text().substring(0, 2).toLowerCase() == 'en') {
+//       $.i18n().locale = $(this).text().substring(0, 2).toLowerCase();
+//     }
+//     else if($(this).text().substring(0, 2).toLowerCase() == 'fr') {
+//       $.i18n().locale = $(this).text().substring(0, 2).toLowerCase();
+//     }
+//     update_texts();
+
+//     $("body").on('DOMSubtreeModified', ".language-select .current", function() {
+//         $.i18n().locale = $(this).text().substring(0, 2).toLowerCase();
+//         document.cookie = "language_deussearch="+$(this).text().substring(0, 2).toLowerCase();
+//         update_texts();
+//     });
+// });
